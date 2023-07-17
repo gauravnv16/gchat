@@ -68,9 +68,45 @@ function App() {
     <NavBar/>
     { !auth.currentUser?.uid && <LoginForm/>}
     {/* <RegisterForm/> */}
-    {/* message form */}
+    {/* messages */}
+    <div className="p-2" style={{
+      position: "fixed",
+      // top: "",
+      left: "0",
+      width: "100%",
+      height: "calc(100vh - 100px)",
+      overflowY: "scroll",
+      display: "flex",
+      flexDirection: "column",
+    }}>
+          {
+       auth.currentUser?.uid && messages.length>0 && messages.map((message)=>{
+        if(message.from === auth.currentUser.uid)
+        return (
+          <div className="p-2 bg-gray-300 m-2 w-fit rounded px-3" key={message.id} style={{
+            marginLeft: "auto",
+          }}>
+            <p className="text-lg">{message.message}</p>
+          </div>
+        )
+        return (
+          <div className="p-2 bg-gray-300 m-2 w-fit rounded px-3" key={message.id}>
+            <p className="text-lg">{message.message}</p>
+          </div>
+        )
+      }
+      )
+    }
+    </div>
+
+
     {
-      auth.currentUser?.uid && <div className="p-2">
+      auth.currentUser?.uid && <div className="p-2" style={{
+        position: "fixed",
+        bottom: "0",
+        left: "0",
+        width: "100%",
+      }}>
       <form className="flex" onSubmit={sendMessage}>
         <input type="text" placeholder="Message" className="border-2 border-black p-2 flex-1"/>
         <button className="border-2 border-black block px-3 py-2 mt-2">Send</button>
@@ -79,16 +115,7 @@ function App() {
     }
     {/* messages */}
 
-    {
-       auth.currentUser?.uid && messages.length>0 && messages.map((message)=>{
-        return (
-          <div className="p-2" key={message.id}>
-            <p className="text-lg">{message.message}</p>
-          </div>
-        )
-      }
-      )
-    }
+
     
 
 

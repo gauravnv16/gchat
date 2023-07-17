@@ -2,10 +2,9 @@ import { auth } from "../../config/firebase"
 function LogOut(){
     auth.signOut();
 }
-
 export const NavBar = () => {
     return (
-        <nav className="p-2 flex items-center border-2">
+        <nav className="p-2 flex items-center">
             <h1 className="text-xl flex items-center">
                 <img src="https://img.icons8.com/fluency/48/000000/chat.png" alt="logo" className="inline-block w-8 h-8 mr-2"/>
                 {
